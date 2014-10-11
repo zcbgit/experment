@@ -39,6 +39,15 @@
     <ClInclude Include="SelfDE.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="latest version\global.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="latest version\rand.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="latest version\sub.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FInterface.cpp">
@@ -60,6 +69,27 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SelfDE.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="latest version\def2.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="latest version\def3.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="latest version\def4.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="latest version\rand.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="latest version\sub.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="latest version\auxiliary.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="latest version\def1.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

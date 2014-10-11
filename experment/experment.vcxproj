@@ -83,6 +83,9 @@
     <ClInclude Include="FInterface.h" />
     <ClInclude Include="headfile.h" />
     <ClInclude Include="jDE.h" />
+    <ClInclude Include="latest version\global.h" />
+    <ClInclude Include="latest version\rand.h" />
+    <ClInclude Include="latest version\sub.h" />
     <ClInclude Include="PSO.h" />
     <ClInclude Include="SelfDE.h" />
     <ClInclude Include="TestFunction.h" />
@@ -92,6 +95,13 @@
     <ClCompile Include="DE.cpp" />
     <ClCompile Include="FInterface.cpp" />
     <ClCompile Include="jDE.cpp" />
+    <ClCompile Include="latest version\auxiliary.c" />
+    <ClCompile Include="latest version\def1.c" />
+    <ClCompile Include="latest version\def2.c" />
+    <ClCompile Include="latest version\def3.c" />
+    <ClCompile Include="latest version\def4.c" />
+    <ClCompile Include="latest version\rand.c" />
+    <ClCompile Include="latest version\sub.c" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PSO.cpp" />
     <ClCompile Include="SelfDE.cpp" />

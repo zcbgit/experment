@@ -42,13 +42,16 @@ double jDE(int funnum,double low,double high)
 
 
 	srand((unsigned int)time(NULL));
+	/* set_func(function_number, dimension), function_number: 1-25 */
+	set_func(funnum, D);
 	gBest_i = 0;//把全局最优跟自身历史最优解下标初始化为0
 	for (i=0;i<NVARS;i++)
 		for (j=0;j<D;j++)
 			xi[i][j] = random(low,high);
 	for (i=0;i<NVARS;i++)
 	{
-		pBest_value[i] = FunArray[funnum](xi[i],D);
+		//pBest_value[i] = FunArray[funnum](xi[i],D);
+		pBest_value[i] = calc_benchmark_func(xi[i]);
 		if (pBest_value[i] < pBest_value[gBest_i])
 			gBest_i = i;
 	}  
@@ -83,7 +86,8 @@ double jDE(int funnum,double low,double high)
 				else
 					Utem[j] = xi[i][j];
 			}
-			double temp = FunArray[funnum](Utem,D);
+			//double temp = FunArray[funnum](Utem,D);
+			long double temp = calc_benchmark_func(xi[i]);
 			if (pBest_value[i] > temp)
 			{
 				for (j=0;j<D;j++)
@@ -106,6 +110,7 @@ double jDE(int funnum,double low,double high)
 
 	fprintf(log, "\n");
 	fclose(log);
+	unset_func();
 	return pBest_value[gBest_i];
 }
 

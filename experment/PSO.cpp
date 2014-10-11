@@ -28,7 +28,7 @@ double PSO(int funnum,double low,double high)
 	srand((unsigned int)time(NULL));
 
 	/* set_func(function_number, dimension), function_number: 1-25 */
-	set_func(funnum + 1, D);
+	set_func(funnum, D);
 
 	for (i=0;i<NVARS;i++)
 		for (j=0;j<D;j++)
@@ -38,7 +38,8 @@ double PSO(int funnum,double low,double high)
 		}
 		for (i=0;i<NVARS;i++)
 		{
-			pBest_value[i] = FunArray[funnum](xi[i],D);
+			//pBest_value[i] = FunArray[funnum](xi[i],D);
+			pBest_value[i] = calc_benchmark_func(xi[i]);
 			if (pBest_value[i] < pBest_value[gBest_i])
 				gBest_i = i;
 		}
@@ -65,8 +66,8 @@ double PSO(int funnum,double low,double high)
 				}
 				for (i=0;i<NVARS;i++)
 				{
-					double temp;
-					temp = FunArray[funnum](xi[i],D);
+					//double temp = FunArray[funnum](xi[i],D);
+					long double temp = calc_benchmark_func(xi[i]);
 					if (temp < pBest_value[i])
 					{
 						for (j=0;j<D;j++)

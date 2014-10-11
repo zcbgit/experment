@@ -14,7 +14,7 @@ double DE(int funnum,double low,double high)
 	int k = 1;
 	int p1,p2,p3;
 	int general = -1;
-	double Vtem[30],Utem[30];
+	long double Vtem[30],Utem[30];
 
 	long double xi[NVARS][D];                                  //解的位置向量
 	long double pBest_value[NVARS];                              //自身的历史最优解值
@@ -24,6 +24,8 @@ double DE(int funnum,double low,double high)
 
 	//初始化
 	srand((unsigned int)time(NULL));
+	/* set_func(function_number, dimension), function_number: 1-25 */
+	set_func(funnum, D);
 	gBest_i = 0;//把全局最优跟自身历史最优解下标初始化为0
 	for (i=0;i<NVARS;i++)
 		for (j=0;j<D;j++)
@@ -86,6 +88,7 @@ double DE(int funnum,double low,double high)
 	}
 	fprintf(log, "\n");
 	fclose(log);
+	unset_func();
 	return pBest_value[gBest_i];
 }
 

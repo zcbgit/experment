@@ -15,7 +15,7 @@ void initialize_f1()
 {
     int i, j;
     FILE *fpt;
-    fpt = fopen("input_data/sphere_func_data.txt","r");
+    fopen_s(&fpt,"input_data/sphere_func_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -25,7 +25,7 @@ void initialize_f1()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -40,7 +40,7 @@ void initialize_f2()
 {
     int i, j;
     FILE *fpt;
-    fpt = fopen("input_data/schwefel_102_data.txt","r");
+    fopen_s(&fpt, "input_data/schwefel_102_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -50,7 +50,7 @@ void initialize_f2()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -64,11 +64,11 @@ void initialize_f2()
 void initialize_f3()
 {
     int i, j;
-    FILE *fpt;
-    if (nreal==2) fpt = fopen("input_data/elliptic_M_D2.txt","r");
-    if (nreal==10) fpt = fopen("input_data/elliptic_M_D10.txt","r");
-    if (nreal==30) fpt = fopen("input_data/elliptic_M_D30.txt","r");
-    if (nreal==50) fpt = fopen("input_data/elliptic_M_D50.txt","r");
+    FILE *fpt = NULL;
+    if (nreal==2) fopen_s(&fpt, "input_data/elliptic_M_D2.txt","r");
+    if (nreal==10) fopen_s(&fpt, "input_data/elliptic_M_D10.txt","r");
+    if (nreal==30) fopen_s(&fpt, "input_data/elliptic_M_D30.txt","r");
+    if (nreal==50) fopen_s(&fpt, "input_data/elliptic_M_D50.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -78,12 +78,12 @@ void initialize_f3()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&g[i][j]);
+            fscanf_s(fpt,"%Lf",&g[i][j]);
             //printf("\n G[%d][%d] = %LE",i+1,j+1,g[i][j]);
         }
     }
     fclose(fpt);
-    fpt = fopen("input_data/high_cond_elliptic_rot_data.txt","r");
+    fopen_s(&fpt, "input_data/high_cond_elliptic_rot_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -93,7 +93,7 @@ void initialize_f3()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -108,7 +108,7 @@ void initialize_f4()
 {
     int i, j;
     FILE *fpt;
-    fpt = fopen("input_data/schwefel_102_data.txt","r");
+    fopen_s(&fpt ,"input_data/schwefel_102_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -118,7 +118,7 @@ void initialize_f4()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -141,17 +141,17 @@ void initialize_f5()
         A5[i] = (long double *)malloc(nreal*sizeof(long double));
     }
     B5 = (long double *)malloc(nreal*sizeof(long double));
-    fpt = fopen("input_data/schwefel_206_data.txt","r");
+    fopen_s(&fpt, "input_data/schwefel_206_data.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
     }
@@ -159,12 +159,12 @@ void initialize_f5()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&A5[i][j]);
+            fscanf_s(fpt,"%Lf",&A5[i][j]);
             //printf("\n A5[%d][%d] = %LE",i+1,j+1,A5[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
     }
@@ -204,7 +204,7 @@ void initialize_f6()
 {
     int i, j;
     FILE *fpt;
-    fpt = fopen("input_data/rosenbrock_func_data.txt","r");
+    fopen_s(&fpt, "input_data/rosenbrock_func_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -214,7 +214,7 @@ void initialize_f6()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             o[i][j] -= 1.0;
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
@@ -229,11 +229,11 @@ void initialize_f6()
 void initialize_f7()
 {
     int i, j;
-    FILE *fpt;
-    if (nreal==2)    fpt = fopen("input_data/griewank_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/griewank_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/griewank_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/griewank_M_D50.txt","r");
+    FILE *fpt = NULL;
+    if (nreal==2)     fopen_s(&fpt, "input_data/griewank_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/griewank_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/griewank_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/griewank_M_D50.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -243,12 +243,12 @@ void initialize_f7()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&g[i][j]);
+            fscanf_s(fpt,"%Lf",&g[i][j]);
             //printf("\n G[%d][%d] = %LE",i+1,j+1,g[i][j]);
         }
     }
     fclose(fpt);
-    fpt = fopen("input_data/griewank_func_data.txt","r");
+    fopen_s(&fpt, "input_data/griewank_func_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -258,7 +258,7 @@ void initialize_f7()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -273,11 +273,11 @@ void initialize_f8()
 {
     int i, j;
     int index;
-    FILE *fpt;
-    if (nreal==2)    fpt = fopen("input_data/ackley_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/ackley_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/ackley_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/ackley_M_D50.txt","r");
+    FILE *fpt = NULL;
+    if (nreal==2)    fopen_s(&fpt, "input_data/ackley_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/ackley_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/ackley_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/ackley_M_D50.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -287,12 +287,12 @@ void initialize_f8()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&g[i][j]);
+            fscanf_s(fpt,"%Lf",&g[i][j]);
             //printf("\n M[%d][%d] = %LE",i+1,j+1,g[i][j]);
         }
     }
     fclose(fpt);
-    fpt = fopen("input_data/ackley_func_data.txt","r");
+    fopen_s(&fpt, "input_data/ackley_func_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -302,7 +302,7 @@ void initialize_f8()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -322,7 +322,7 @@ void initialize_f9()
 {
     int i, j;
     FILE *fpt;
-    fpt = fopen("input_data/rastrigin_func_data.txt","r");
+    fopen_s(&fpt, "input_data/rastrigin_func_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -332,7 +332,7 @@ void initialize_f9()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -346,11 +346,11 @@ void initialize_f9()
 void initialize_f10()
 {
     int i, j;
-    FILE *fpt;
-    if (nreal==2)    fpt = fopen("input_data/rastrigin_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/rastrigin_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/rastrigin_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/rastrigin_M_D50.txt","r");
+    FILE *fpt = NULL;
+    if (nreal==2)    fopen_s(&fpt, "input_data/rastrigin_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/rastrigin_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/rastrigin_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/rastrigin_M_D50.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -360,12 +360,12 @@ void initialize_f10()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&g[i][j]);
+            fscanf_s(fpt,"%Lf",&g[i][j]);
             //printf("\n M[%d][%d] = %LE",i+1,j+1,g[i][j]);
         }
     }
     fclose(fpt);
-    fpt = fopen("input_data/rastrigin_func_data.txt","r");
+    fopen_s(&fpt, "input_data/rastrigin_func_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -375,7 +375,7 @@ void initialize_f10()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -389,11 +389,11 @@ void initialize_f10()
 void initialize_f11()
 {
     int i, j;
-    FILE *fpt;
-    if (nreal==2)    fpt = fopen("input_data/weierstrass_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/weierstrass_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/weierstrass_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/weierstrass_M_D50.txt","r");
+    FILE *fpt = NULL;
+    if (nreal==2)    fopen_s(&fpt, "input_data/weierstrass_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/weierstrass_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/weierstrass_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/weierstrass_M_D50.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -403,12 +403,12 @@ void initialize_f11()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&g[i][j]);
+            fscanf_s(fpt,"%Lf",&g[i][j]);
             //printf("\n M[%d][%d] = %LE",i+1,j+1,g[i][j]);
         }
     }
     fclose(fpt);
-    fpt = fopen("input_data/weierstrass_data.txt","r");
+    fopen_s(&fpt, "input_data/weierstrass_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -418,7 +418,7 @@ void initialize_f11()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -442,7 +442,7 @@ void initialize_f12()
         A[i] = (long double *)malloc(nreal*sizeof(long double));
         B[i] = (long double *)malloc(nreal*sizeof(long double));
     }
-    fpt = fopen("input_data/schwefel_213_data.txt","r");
+    fopen_s(&fpt, "input_data/schwefel_213_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -453,12 +453,12 @@ void initialize_f12()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&A[i][j]);
+            fscanf_s(fpt,"%Lf",&A[i][j]);
             //printf("\n A[%d][%d] = %LE",i+1,j+1,A[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
     }
@@ -468,7 +468,7 @@ void initialize_f12()
         {
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while(c!='\n');
         }
@@ -478,12 +478,12 @@ void initialize_f12()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&B[i][j]);
+            fscanf_s(fpt,"%Lf",&B[i][j]);
             //printf("\n B[%d][%d] = %LE",i+1,j+1,B[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
     }
@@ -493,7 +493,7 @@ void initialize_f12()
         {
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while(c!='\n');
         }
@@ -501,7 +501,7 @@ void initialize_f12()
     /* Reading alpha */
     for (i=0; i<nreal; i++)
     {
-        fscanf(fpt,"%Lf",&alpha[i]);
+        fscanf_s(fpt,"%Lf",&alpha[i]);
         //printf("\n alpha[%d] = %LE",i+1,alpha[i]);
     }
     fclose(fpt);
@@ -515,7 +515,7 @@ void initialize_f13()
 {
     int i, j;
     FILE *fpt;
-    fpt = fopen("input_data/EF8F2_func_data.txt","r");
+    fopen_s(&fpt, "input_data/EF8F2_func_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -525,7 +525,7 @@ void initialize_f13()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             o[i][j] -= 1.0;
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
@@ -540,11 +540,11 @@ void initialize_f13()
 void initialize_f14()
 {
     int i, j;
-    FILE *fpt;
-    if (nreal==2)    fpt = fopen("input_data/E_ScafferF6_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/E_ScafferF6_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/E_ScafferF6_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/E_ScafferF6_M_D50.txt","r");
+    FILE *fpt = NULL;
+    if (nreal==2)    fopen_s(&fpt, "input_data/E_ScafferF6_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/E_ScafferF6_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/E_ScafferF6_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/E_ScafferF6_M_D50.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -554,12 +554,12 @@ void initialize_f14()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&g[i][j]);
+            fscanf_s(fpt,"%Lf",&g[i][j]);
             //printf("\n M[%d][%d] = %LE",i+1,j+1,g[i][j]);
         }
     }
     fclose(fpt);
-    fpt = fopen("input_data/E_ScafferF6_func_data.txt","r");
+    fopen_s(&fpt, "input_data/E_ScafferF6_func_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -569,7 +569,7 @@ void initialize_f14()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
     }
@@ -585,7 +585,7 @@ void initialize_f15()
     int i, j;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func1_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func1_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -595,12 +595,12 @@ void initialize_f15()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         // printf("\n");
@@ -627,7 +627,7 @@ void initialize_f16()
     int i, j, k;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func1_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func1_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -637,33 +637,33 @@ void initialize_f16()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         //printf("\n");
     }
     fclose(fpt);
-    if (nreal==2)    fpt = fopen("input_data/hybrid_func1_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/hybrid_func1_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/hybrid_func1_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/hybrid_func1_M_D50.txt","r");
+    if (nreal==2)    fopen_s(&fpt, "input_data/hybrid_func1_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/hybrid_func1_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/hybrid_func1_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/hybrid_func1_M_D50.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
             for (k=0; k<nreal; k++)
             {
-                fscanf(fpt,"%Lf",&l[i][j][k]);
+                fscanf_s(fpt,"%Lf",&l[i][j][k]);
                 //printf("\n M[%d][%d][%d] = %LE",i+1,j+1,k+1,l[i][j][k]);
             }
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while (c!='\n');
         }
@@ -690,7 +690,7 @@ void initialize_f17()
     int i, j, k;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func1_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func1_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -700,33 +700,33 @@ void initialize_f17()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         //printf("\n");
     }
     fclose(fpt);
-    if (nreal==2)    fpt = fopen("input_data/hybrid_func1_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/hybrid_func1_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/hybrid_func1_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/hybrid_func1_M_D50.txt","r");
+    if (nreal==2)    fopen_s(&fpt, "input_data/hybrid_func1_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/hybrid_func1_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/hybrid_func1_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/hybrid_func1_M_D50.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
             for (k=0; k<nreal; k++)
             {
-                fscanf(fpt,"%Lf",&l[i][j][k]);
+                fscanf_s(fpt,"%Lf",&l[i][j][k]);
                 //printf("\n M[%d][%d][%d] = %LE",i+1,j+1,k+1,l[i][j][k]);
             }
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while (c!='\n');
         }
@@ -753,7 +753,7 @@ void initialize_f18()
     int i, j, k;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func2_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func2_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -763,33 +763,33 @@ void initialize_f18()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         //printf("\n");
     }
     fclose(fpt);
-    if (nreal==2)    fpt = fopen("input_data/hybrid_func2_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/hybrid_func2_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/hybrid_func2_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/hybrid_func2_M_D50.txt","r");
+    if (nreal==2)    fopen_s(&fpt, "input_data/hybrid_func2_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/hybrid_func2_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/hybrid_func2_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/hybrid_func2_M_D50.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
             for (k=0; k<nreal; k++)
             {
-                fscanf(fpt,"%Lf",&l[i][j][k]);
+                fscanf_s(fpt,"%Lf",&l[i][j][k]);
                 //printf("\n M[%d][%d][%d] = %LE",i+1,j+1,k+1,l[i][j][k]);
             }
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while (c!='\n');
         }
@@ -830,7 +830,7 @@ void initialize_f19()
     int i, j, k;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func2_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func2_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -840,33 +840,33 @@ void initialize_f19()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         //printf("\n");
     }
     fclose(fpt);
-    if (nreal==2)    fpt = fopen("input_data/hybrid_func2_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/hybrid_func2_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/hybrid_func2_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/hybrid_func2_M_D50.txt","r");
+    if (nreal==2)    fopen_s(&fpt, "input_data/hybrid_func2_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/hybrid_func2_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/hybrid_func2_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/hybrid_func2_M_D50.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
             for (k=0; k<nreal; k++)
             {
-                fscanf(fpt,"%Lf",&l[i][j][k]);
+                fscanf_s(fpt,"%Lf",&l[i][j][k]);
                 //printf("\n M[%d][%d][%d] = %LE",i+1,j+1,k+1,l[i][j][k]);
             }
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while (c!='\n');
         }
@@ -908,7 +908,7 @@ void initialize_f20()
     int index;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func2_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func2_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -918,12 +918,12 @@ void initialize_f20()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         //printf("\n");
@@ -934,22 +934,22 @@ void initialize_f20()
     {
         o[0][2*i-1] = 5.0;
     }
-    if (nreal==2)    fpt = fopen("input_data/hybrid_func2_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/hybrid_func2_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/hybrid_func2_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/hybrid_func2_M_D50.txt","r");
+    if (nreal==2)    fopen_s(&fpt, "input_data/hybrid_func2_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/hybrid_func2_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/hybrid_func2_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/hybrid_func2_M_D50.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
             for (k=0; k<nreal; k++)
             {
-                fscanf(fpt,"%Lf",&l[i][j][k]);
+                fscanf_s(fpt,"%Lf",&l[i][j][k]);
                 //printf("\n M[%d][%d][%d] = %LE",i+1,j+1,k+1,l[i][j][k]);
             }
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while (c!='\n');
         }
@@ -990,7 +990,7 @@ void initialize_f21()
     int i, j, k;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func3_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func3_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -1000,33 +1000,33 @@ void initialize_f21()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         //printf("\n");
     }
     fclose(fpt);
-    if (nreal==2)    fpt = fopen("input_data/hybrid_func3_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/hybrid_func3_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/hybrid_func3_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/hybrid_func3_M_D50.txt","r");
+    if (nreal==2)    fopen_s(&fpt, "input_data/hybrid_func3_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/hybrid_func3_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/hybrid_func3_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/hybrid_func3_M_D50.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
             for (k=0; k<nreal; k++)
             {
-                fscanf(fpt,"%Lf",&l[i][j][k]);
+                fscanf_s(fpt,"%Lf",&l[i][j][k]);
                 //printf("\n M[%d][%d][%d] = %LE",i+1,j+1,k+1,l[i][j][k]);
             }
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while (c!='\n');
         }
@@ -1063,7 +1063,7 @@ void initialize_f22()
     int i, j, k;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func3_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func3_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -1073,33 +1073,33 @@ void initialize_f22()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         //printf("\n");
     }
     fclose(fpt);
-    if (nreal==2)    fpt = fopen("input_data/hybrid_func3_HM_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/hybrid_func3_HM_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/hybrid_func3_HM_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/hybrid_func3_HM_D50.txt","r");
+    if (nreal==2)    fopen_s(&fpt, "input_data/hybrid_func3_HM_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/hybrid_func3_HM_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/hybrid_func3_HM_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/hybrid_func3_HM_D50.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
             for (k=0; k<nreal; k++)
             {
-                fscanf(fpt,"%Lf",&l[i][j][k]);
+                fscanf_s(fpt,"%Lf",&l[i][j][k]);
                 //printf("\n M[%d][%d][%d] = %LE",i+1,j+1,k+1,l[i][j][k]);
             }
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while (c!='\n');
         }
@@ -1136,7 +1136,7 @@ void initialize_f23()
     int i, j, k;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func3_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func3_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -1146,33 +1146,33 @@ void initialize_f23()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         //printf("\n");
     }
     fclose(fpt);
-    if (nreal==2)    fpt = fopen("input_data/hybrid_func3_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/hybrid_func3_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/hybrid_func3_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/hybrid_func3_M_D50.txt","r");
+    if (nreal==2)    fopen_s(&fpt, "input_data/hybrid_func3_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/hybrid_func3_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/hybrid_func3_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/hybrid_func3_M_D50.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
             for (k=0; k<nreal; k++)
             {
-                fscanf(fpt,"%Lf",&l[i][j][k]);
+                fscanf_s(fpt,"%Lf",&l[i][j][k]);
                 //printf("\n M[%d][%d][%d] = %LE",i+1,j+1,k+1,l[i][j][k]);
             }
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
                 /*printf("\n got here \n");*/
             }
             while (c!='\n');
@@ -1210,7 +1210,7 @@ void initialize_f24()
     int i, j, k;
     FILE *fpt;
     char c;
-    fpt = fopen("input_data/hybrid_func4_data.txt","r");
+    fopen_s(&fpt, "input_data/hybrid_func4_data.txt","r");
     if (fpt==NULL)
     {
         fprintf(stderr,"\n Error: Cannot open input file for reading \n");
@@ -1220,33 +1220,33 @@ void initialize_f24()
     {
         for (j=0; j<nreal; j++)
         {
-            fscanf(fpt,"%Lf",&o[i][j]);
+            fscanf_s(fpt,"%Lf",&o[i][j]);
             //printf("\n O[%d][%d] = %LE",i+1,j+1,o[i][j]);
         }
         do
         {
-            fscanf(fpt,"%c",&c);
+            fscanf_s(fpt,"%c",&c);
         }
         while (c!='\n');
         //printf("\n");
     }
     fclose(fpt);
-    if (nreal==2)    fpt = fopen("input_data/hybrid_func4_M_D2.txt","r");
-    if (nreal==10)    fpt = fopen("input_data/hybrid_func4_M_D10.txt","r");
-    if (nreal==30)    fpt = fopen("input_data/hybrid_func4_M_D30.txt","r");
-    if (nreal==50)    fpt = fopen("input_data/hybrid_func4_M_D50.txt","r");
+    if (nreal==2)    fopen_s(&fpt, "input_data/hybrid_func4_M_D2.txt","r");
+    if (nreal==10)    fopen_s(&fpt, "input_data/hybrid_func4_M_D10.txt","r");
+    if (nreal==30)    fopen_s(&fpt, "input_data/hybrid_func4_M_D30.txt","r");
+    if (nreal==50)    fopen_s(&fpt, "input_data/hybrid_func4_M_D50.txt","r");
     for (i=0; i<nfunc; i++)
     {
         for (j=0; j<nreal; j++)
         {
             for (k=0; k<nreal; k++)
             {
-                fscanf(fpt,"%Lf",&l[i][j][k]);
+                fscanf_s(fpt,"%Lf",&l[i][j][k]);
                 //printf("\n M[%d][%d][%d] = %LE",i+1,j+1,k+1,l[i][j][k]);
             }
             do
             {
-                fscanf(fpt,"%c",&c);
+                fscanf_s(fpt,"%c",&c);
             }
             while (c!='\n');
         }
