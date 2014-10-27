@@ -28,14 +28,16 @@ int loadfunction()
 int arg_sigma(Algorithm_Type alg,int FunNum)
 {
 	int CalCounter;
-
+	/* set_func(function_number, dimension), function_number: 1-25 */
+	//set_func(FunNum, D);
 	for (CalCounter=0;CalCounter<CALTIMES;CalCounter++)
-		result[CalCounter] = alg(FunNum,range1[FunNum][0],range1[FunNum][1]);
-
+		result[CalCounter] = alg(FunNum,range[FunNum][0],range[FunNum][1]) - fmin0[FunNum];
+	/* use unset_func() to free memory */
+	//unset_func();
 	return 0;
 }
 
-double CalDistance(const long double xi[NVARS][D], const int gBest_i)
+double CalDistance(const double xi[NVARS][D], const int gBest_i)
 {
 	double distance=0;
 	double dx;

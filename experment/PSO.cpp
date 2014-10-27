@@ -15,20 +15,17 @@ double PSO(int funnum,double low,double high)
 {
 	int i,j;
 	int k = 1;
-	long double xi[NVARS][D];                                  //解的位置向量
-	long double vi[NVARS][D];                                  //解的速度向量
-	long double pBest_array[NVARS][D];                         //自身的历史最优解位置向量值
-	long double pBest_value[NVARS];                              //自身的历史最优解值
+	double xi[NVARS][D];                                  //解的位置向量
+	double vi[NVARS][D];                                  //解的速度向量
+	double pBest_array[NVARS][D];                         //自身的历史最优解位置向量值
+	double pBest_value[NVARS];                              //自身的历史最优解值
 	int gBest_i;                                            //全局最优向量下标值
-	FILE *log;
-	fopen_s(&log, "PSO_log.txt","a");
+// 	FILE *log;
+// 	fopen_s(&log, "PSO_log.txt","a");
 
 	//初始化
 	gBest_i = 0;//把全局最优跟自身历史最优解下标初始化为0
 	srand((unsigned int)time(NULL));
-
-	/* set_func(function_number, dimension), function_number: 1-25 */
-	set_func(funnum, D);
 
 	for (i=0;i<NVARS;i++)
 		for (j=0;j<D;j++)
@@ -38,13 +35,13 @@ double PSO(int funnum,double low,double high)
 		}
 		for (i=0;i<NVARS;i++)
 		{
-			//pBest_value[i] = FunArray[funnum](xi[i],D);
-			pBest_value[i] = calc_benchmark_func(xi[i]);
+			pBest_value[i] = FunArray[funnum](xi[i],D);
+			//pBest_value[i] = calc_benchmark_func(xi[i]);
 			if (pBest_value[i] < pBest_value[gBest_i])
 				gBest_i = i;
 		}
-		double d =CalDistance(xi, gBest_i);
-		fprintf(log, "%lf\t%le\n", d, pBest_value[gBest_i]);
+// 		double d =CalDistance(xi, gBest_i);
+// 		fprintf(log, "%lf\t%le\n", d, pBest_value[gBest_i]);
 		while (k < MAXGENS)
 		{
 			//粒子的速度更新和位置更新
@@ -66,8 +63,8 @@ double PSO(int funnum,double low,double high)
 				}
 				for (i=0;i<NVARS;i++)
 				{
-					//double temp = FunArray[funnum](xi[i],D);
-					long double temp = calc_benchmark_func(xi[i]);
+					double temp = FunArray[funnum](xi[i],D);
+					//long double temp = calc_benchmark_func(xi[i]);
 					if (temp < pBest_value[i])
 					{
 						for (j=0;j<D;j++)
@@ -84,15 +81,14 @@ double PSO(int funnum,double low,double high)
 						gBest_i = i;
 				}
 				k++;
-				if (0 == k % 100) {
-					d = CalDistance(xi, gBest_i);
-					fprintf(log, "%lf\t%le\n", d, pBest_value[gBest_i]);
-					//printf("%lf\n", d);
-				}
+// 				if (0 == k % 100) {
+// 					d = CalDistance(xi, gBest_i);
+// 					fprintf(log, "%lf\t%le\n", d, pBest_value[gBest_i]);
+// 					//printf("%lf\n", d);
+// 				}
 		}
-		fprintf(log, "\n");
-		fclose(log);
-		/* use unset_func() to free memory */
-		unset_func();
+// 		fprintf(log, "\n");
+// 		fclose(log);
+
 		return pBest_value[gBest_i];
 }

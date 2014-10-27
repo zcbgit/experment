@@ -8,37 +8,36 @@ double SelfDE(int funnum,double low,double high)
 	int i,j;
 	int k = 1;
 	int p1,p2,p3;
-	long double xi[NVARS][D];                                  //解的位置向量
-	long double pBest_value[NVARS];                              //自身的历史最优解值
+	double xi[NVARS][D];                                  //解的位置向量
+	double pBest_value[NVARS];                              //自身的历史最优解值
 	int gBest_i;                                            //全局最优向量下标值
 	double Vtem[30],Utem[30];
 	double F = Fmax_sDE;
 
-	FILE *log;
-	fopen_s(&log, "selfDE_log.txt","a");
+// 	FILE *log;
+// 	fopen_s(&log, "selfDE_log.txt","a");
 	//初始化
 	srand((unsigned int)time(NULL));
-	/* set_func(function_number, dimension), function_number: 1-25 */
-	set_func(funnum, D);
+
 	gBest_i = 0;//把全局最优跟自身历史最优解下标初始化为0
 	for (i=0;i<NVARS;i++)
 		for (j=0;j<D;j++)
 			xi[i][j] = random(low,high);
 	for (i=0;i<NVARS;i++)
 	{
-		//pBest_value[i] = FunArray[funnum](xi[i],D);
-		pBest_value[i] = calc_benchmark_func(xi[i]);
+		pBest_value[i] = FunArray[funnum](xi[i],D);
+		//pBest_value[i] = calc_benchmark_func(xi[i]);
 		if (pBest_value[i] < pBest_value[gBest_i])
 			gBest_i = i;
 	}
-	double maxd =CalDistance(xi, gBest_i);
-	fprintf(log, "%lf\n", maxd);
+ 	double maxd =CalDistance(xi, gBest_i);
+// 	fprintf(log, "%lf\n", maxd);
 	//printf("%lf\n", maxd);
 	for (k=1;k<MAXGENS;k++)
 	{
 		for (i=0;i<NVARS;i++)
 		{
-			int randi = random_int(0,NVARS);
+			int randi = random_int(0,D);
 			//产生变异向量下标
 			p1 = random_int(0,NVARS);
 			p2 = random_int(0,NVARS);
@@ -57,8 +56,8 @@ double SelfDE(int funnum,double low,double high)
 				else
 					Utem[j] = xi[i][j];
 			}
-			//double temp = FunArray[funnum](Utem,D);
-			double temp = calc_benchmark_func(xi[i]);
+			double temp = FunArray[funnum](Utem,D);
+			//long double temp = calc_benchmark_func(Utem);
 			if (pBest_value[i] > temp)
 			{
 				for (j=0;j<D;j++)
@@ -98,12 +97,12 @@ double SelfDE(int funnum,double low,double high)
 		else
 			F = 0.9 - d/maxd;
 		if (0 == k % 100) {
-			fprintf(log, "%lf\n", d);
+			/*fprintf(log, "%lf\n", d);*/
 			//printf("%lf\n", d);
 		}
 	}
-	fprintf(log, "\n");
-	fclose(log);
-	unset_func();
+// 	fprintf(log, "\n");
+// 	fclose(log);
+
 	return pBest_value[gBest_i];
 }

@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 		fopen_s(&log, "jDEresult.txt","w");
 	else if (CHOICE == IS_SADE)
 		fopen_s(&log, "SaDEresult.txt","w");
-	for (FunCounter=0;FunCounter<13;FunCounter++)
+	for (FunCounter=7;FunCounter<8;FunCounter++)
 	{
 		if (CHOICE == IS_PSO)
 			arg_sigma(PSO,FunCounter);
@@ -32,8 +32,8 @@ int main(int argc, char* argv[])
 		else if (CHOICE == IS_SADE)
 			arg_sigma(SelfDE,FunCounter);
 
-		printf("fun%d\n", FunCounter + 1);
-		fprintf(log, "fun%d\n", FunCounter + 1);
+		printf("fun%d\n", FunCounter);
+		fprintf(log, "fun%d\n", FunCounter);
 		for (int i = 0;i < CALTIMES; i++) {
 			printf("%.6e\n", result[i]);
 			fprintf(log, "%.6e\n", result[i]);

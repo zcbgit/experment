@@ -8,7 +8,7 @@ int loadfunction();
 //选择用何种算法计算第FunNum个函数
 int arg_sigma(Algorithm_Type alg,int FunNum);
 //计算个体之间的平均距离
-double CalDistance(const long double xi[NVARS][D], const int gBest_i);
+double CalDistance(const double xi[NVARS][D], const int gBest_i);
 //标准差分进化算法
 #include "DE.h"
 // #ifndef F_DE

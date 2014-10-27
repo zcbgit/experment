@@ -19,7 +19,7 @@
 #define D      30                                            //º¯ÊıÎ¬¶ÈÎª30
 #define NVARS    30                                            //ÖÖÈº´óĞ¡Îª30
 #define MAXGENS  10000                                         //µü´ú´ÎÊı£¬Ã¿¸öº¯Êı×ÜÆÀ¹À´ÎÊıÎª300000
-#define CALTIMES 1                                            //¼ÆËã30´ÎÓÃÓÚÈ¡Æ½¾ùÖµ
+#define CALTIMES 30                                            //¼ÆËã30´ÎÓÃÓÚÈ¡Æ½¾ùÖµ
 #define FUNNUM   13                                            //º¯Êı¸öÊı
 #define TRUE     1
 #define FALSE    0
@@ -34,6 +34,7 @@ extern int gBest_i;                                            //È«¾Ö×îÓÅÏòÁ¿ÏÂ±
 */
 extern double result[CALTIMES];                                //30´Î¼ÆËãµÄ½á¹û  
 extern double range[FUNNUM][2];                                //º¯Êı±äÁ¿µÄÈ¡Öµ·¶Î§
+extern double fmin0[13];
 
 extern double range1[26][2];
 extern double fmin[26];
